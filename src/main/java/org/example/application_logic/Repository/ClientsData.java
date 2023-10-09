@@ -1,8 +1,8 @@
 package org.example.application_logic.Repository;
 
-import org.example.application_entity.Entity.Client.Client;
-import org.example.application_entity.Entity.Transaction.Operation;
-import org.example.application_entity.Entity.Client.SessionClient;
+import org.example.application_entity.Client.Client;
+import org.example.application_entity.Transaction.Operation;
+import org.example.application_entity.Client.SessionClient;
 
 import java.util.ArrayList;
 

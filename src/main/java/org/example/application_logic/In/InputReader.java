@@ -1,13 +1,15 @@
 package org.example.application_logic.In;
 
 import org.example.application_logic.Service.ClientServices.AccountManager;
-import org.example.application_entity.Entity.Transaction.Operation;
-import org.example.application_entity.Entity.Client.SessionClient;
-import org.example.application_entity.Entity.Transaction.Transaction;
+import org.example.application_entity.Transaction.Operation;
+import org.example.application_entity.Client.SessionClient;
+import org.example.application_entity.Transaction.Transaction;
 import org.example.application_logic.Repository.OperationData;
 import org.example.application_logic.Service.ClientServices.BeginTransaction;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class InputReader {
@@ -20,7 +22,7 @@ public class InputReader {
      *
      * @return если клиент авторизуется, функция вернет true и функция прекратит свою работу
      */
-    public static boolean beginDialog() {
+    public static boolean beginDialog() throws InputMismatchException {
         System.out.println("Для продолжения зарегистрируйтесь/авторизируйтесь");
         System.out.println("Регистрация (1)\nАвторизация (2)\nВыход (3)");
         int input_value = scanner.nextInt();
@@ -69,14 +71,14 @@ public class InputReader {
      *
      * @return возвращает true если функция отработала и пользователь не вышел из системы, false если пользователь вышел из системы
      */
-    public static boolean chooseMove() {
+    public static boolean chooseMove() throws InputMismatchException {
         System.out.println("Выбирите операцию : \n(1) Баланс счета\n(2) Пополнить счет\n(3) Снять деньги со счета\n(4) Взять кредит\n(5) История операций\n(6) Выход");
         int input_value = scanner.nextInt();
         double quantity;
         switch (input_value) {
             case 1:
                 System.out.println("Баланс счета :\n" + SessionClient.session_client.getBalance().getValue() + "\n--------------------------------------");
-                return true;
+                break;
             case 2:
                 System.out.println("Введите значние : ");
                 quantity = scanner.nextDouble();

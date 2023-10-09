@@ -1,6 +1,6 @@
 package org.example.application_logic.Service.ClientServices;
 
-import org.example.application_entity.Entity.Transaction.Operation;
+import org.example.application_entity.Transaction.Operation;
 
 public interface TransactionsType {
 

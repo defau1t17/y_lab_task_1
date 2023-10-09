@@ -1,6 +1,6 @@
 package org.example.application_logic.Handler;
 
-import org.example.application_entity.Entity.Client.SessionClient;
+import org.example.application_entity.Client.SessionClient;
 
 public class CheckForIssues {
 

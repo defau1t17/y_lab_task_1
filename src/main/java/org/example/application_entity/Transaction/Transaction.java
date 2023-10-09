@@ -1,4 +1,4 @@
-package org.example.application_entity.Entity.Transaction;
+package org.example.application_entity.Transaction;
 
 
 import java.time.LocalDate;

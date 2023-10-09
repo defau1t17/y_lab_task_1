@@ -1,4 +1,4 @@
-package org.example.application_entity.Entity.Client;
+package org.example.application_entity.Client;
 
 public class SessionClient {
 

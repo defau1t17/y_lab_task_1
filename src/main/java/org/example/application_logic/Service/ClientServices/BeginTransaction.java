@@ -1,12 +1,12 @@
 package org.example.application_logic.Service.ClientServices;
 
-import org.example.application_entity.Entity.Transaction.Operation;
-import org.example.application_entity.Entity.Client.SessionClient;
-import org.example.application_entity.Entity.Transaction.Transaction;
 import org.example.application_logic.Handler.CheckForIssues;
 import org.example.application_logic.Repository.ClientsData;
 import org.example.application_logic.Repository.OperationData;
 import org.example.application_logic.Service.GenerateID;
+import org.example.application_entity.Transaction.Operation;
+import org.example.application_entity.Client.SessionClient;
+import org.example.application_entity.Transaction.Transaction;
 
 import java.time.LocalDate;
 

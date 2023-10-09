@@ -1,8 +1,8 @@
 package org.example.application_logic.Repository;
 
 import org.example.application_entity.DAO.TransactionDAO;
-import org.example.application_entity.Entity.Client.Client;
-import org.example.application_entity.Entity.Transaction.Transaction;
+import org.example.application_entity.Client.Client;
+import org.example.application_entity.Transaction.Transaction;
 
 import java.util.ArrayList;
 

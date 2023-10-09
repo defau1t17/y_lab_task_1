@@ -1,9 +1,9 @@
 package org.example.application_logic.Service.ClientServices;
 
-import org.example.application_entity.Entity.Client.Client;
-import org.example.application_entity.Entity.Client.SessionClient;
-import org.example.application_logic.Repository.ClientsData;
 import org.example.application_logic.Service.GenerateID;
+import org.example.application_entity.Client.Client;
+import org.example.application_entity.Client.SessionClient;
+import org.example.application_logic.Repository.ClientsData;
 
 public class AccountManager {
 

@@ -1,0 +1,15 @@
+org\example\application_logic\Repository\OperationData.class
+org\example\application_entity\DAO\TransactionDAO.class
+org\example\application_entity\Entity\Transaction\Operation.class
+org\example\application_logic\In\InputReader.class
+org\example\application_logic\Service\ClientServices\TransactionsType.class
+org\example\application_logic\Service\ClientServices\AccountManager.class
+org\example\application_logic\Service\ClientServices\BeginTransaction.class
+org\example\application_entity\Entity\Client\Balance.class
+org\example\application_entity\Entity\Client\SessionClient.class
+org\example\application_logic\Repository\ClientsData$1.class
+org\example\application_logic\Service\GenerateID.class
+org\example\application_logic\Handler\CheckForIssues.class
+org\example\application_logic\Repository\ClientsData.class
+org\example\application_entity\Entity\Client\Client.class
+org\example\application_entity\Entity\Transaction\Transaction.class

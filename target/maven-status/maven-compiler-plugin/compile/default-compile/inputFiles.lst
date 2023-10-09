@@ -1,0 +1,15 @@
+D:\Java\JavaProjects\y_lab_task_1\src\main\java\org\example\application_logic\In\InputReader.java
+D:\Java\JavaProjects\y_lab_task_1\src\main\java\org\example\application_logic\Repository\OperationData.java
+D:\Java\JavaProjects\y_lab_task_1\src\main\java\org\example\application_entity\Entity\Transaction\Transaction.java
+D:\Java\JavaProjects\y_lab_task_1\src\main\java\org\example\application_logic\Service\GenerateID.java
+D:\Java\JavaProjects\y_lab_task_1\src\main\java\org\example\Main.java
+D:\Java\JavaProjects\y_lab_task_1\src\main\java\org\example\application_logic\Handler\CheckForIssues.java
+D:\Java\JavaProjects\y_lab_task_1\src\main\java\org\example\application_logic\Repository\ClientsData.java
+D:\Java\JavaProjects\y_lab_task_1\src\main\java\org\example\application_entity\Entity\Client\Client.java
+D:\Java\JavaProjects\y_lab_task_1\src\main\java\org\example\application_entity\Entity\Client\SessionClient.java
+D:\Java\JavaProjects\y_lab_task_1\src\main\java\org\example\application_logic\Service\ClientServices\AccountManager.java
+D:\Java\JavaProjects\y_lab_task_1\src\main\java\org\example\application_logic\Service\ClientServices\BeginTransaction.java
+D:\Java\JavaProjects\y_lab_task_1\src\main\java\org\example\application_entity\Entity\Client\Balance.java
+D:\Java\JavaProjects\y_lab_task_1\src\main\java\org\example\application_entity\Entity\Transaction\Operation.java
+D:\Java\JavaProjects\y_lab_task_1\src\main\java\org\example\application_logic\Service\ClientServices\TransactionsType.java
+D:\Java\JavaProjects\y_lab_task_1\src\main\java\org\example\application_entity\DAO\TransactionDAO.java

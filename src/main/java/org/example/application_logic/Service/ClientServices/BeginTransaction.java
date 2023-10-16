@@ -1,7 +1,7 @@
 package org.example.application_logic.Service.ClientServices;
 
 import org.example.application_logic.Handler.CheckForIssues;
-import org.example.application_logic.Repository.ClientsData;
+import org.example.application_logic.Repository.ClientsDataRepository;
 import org.example.application_logic.Repository.OperationData;
 import org.example.application_logic.Service.GenerateID;
 import org.example.application_entity.Transaction.Operation;
@@ -24,7 +24,7 @@ public class BeginTransaction implements TransactionsType {
     public boolean replenishment(Operation operation, double quantity) {
         Transaction transaction = new Transaction(GenerateID.generateID(), operation, quantity, LocalDate.now());
         if (new OperationData().addNewOperationForClient(SessionClient.session_client, transaction)) {
-            ClientsData.updateClientBalanceById(SessionClient.session_client.getId(), quantity, operation);
+            ClientsDataRepository.updateClientBalanceById(SessionClient.session_client.getId(), quantity, operation);
             return true;
         }
         return false;
@@ -42,7 +42,7 @@ public class BeginTransaction implements TransactionsType {
         Transaction transaction = new Transaction(GenerateID.generateID(), operation, quantity, LocalDate.now());
         if (CheckForIssues.enoughMoney(quantity)) {
             if (new OperationData().addNewOperationForClient(SessionClient.session_client, transaction)) {
-                ClientsData.updateClientBalanceById(SessionClient.session_client.getId(), quantity, operation);
+                ClientsDataRepository.updateClientBalanceById(SessionClient.session_client.getId(), quantity, operation);
                 return true;
             } else return false;
         } else return false;
@@ -59,7 +59,7 @@ public class BeginTransaction implements TransactionsType {
     public boolean creditAdd(Operation operation, double quantity) {
         Transaction transaction = new Transaction(GenerateID.generateID(), operation, quantity, LocalDate.now());
         if (new OperationData().addNewOperationForClient(SessionClient.session_client, transaction)) {
-            ClientsData.updateClientBalanceById(SessionClient.session_client.getId(), quantity, operation);
+            ClientsDataRepository.updateClientBalanceById(SessionClient.session_client.getId(), quantity, operation);
             return true;
         }
         return false;

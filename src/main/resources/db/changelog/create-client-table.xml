@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.10.xsd">
+
+    <changeSet id="create-clients-table" author="default">
+        <createTable schemaName="clients" tableName="wallet">
+            <column name="id" type="SERIAL" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false" unique="true"/>
+            </column>
+            <column name="nickname" type="VARCHAR(30)">
+                <constraints unique="true"/>
+            </column>
+            <column name="username" type="VARCHAR(30)"/>
+            <column name="password" type="VARCHAR(30)"/>
+            <column name="balance" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>

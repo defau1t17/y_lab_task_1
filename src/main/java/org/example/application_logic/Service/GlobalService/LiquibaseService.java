@@ -1,4 +1,4 @@
-package org.example.application_logic.Repository;
+package org.example.application_logic.Service.GlobalService;
 
 import liquibase.Liquibase;
 import liquibase.database.Database;
@@ -10,10 +10,10 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 
 
-public class LiquibaseController {
+public class LiquibaseService {
 
     /**
-     * Метод для создания всех схем и таблиц
+     * Функция по созданию схем и таблиц
      */
 
     public void createSchemasAndTables() {

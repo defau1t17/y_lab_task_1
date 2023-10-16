@@ -4,10 +4,9 @@ import org.example.application_logic.Service.ClientServices.AccountManager;
 import org.example.application_entity.Transaction.Operation;
 import org.example.application_entity.Client.SessionClient;
 import org.example.application_entity.Transaction.Transaction;
-import org.example.application_logic.Repository.OperationData;
+import org.example.application_logic.Repository.TransactionsDataRepository;
 import org.example.application_logic.Service.ClientServices.BeginTransaction;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -19,6 +18,7 @@ public class InputReader {
 
     /**
      * Фунция предназначена для общения неавторизованного клиента
+     * Доступны операции регистрации, авторизации и выхода из приложения
      *
      * @return если клиент авторизуется, функция вернет true и функция прекратит свою работу
      */
@@ -68,6 +68,7 @@ public class InputReader {
 
     /**
      * Функция предназначена для общения авторизированного пользователя и проведения транзакционных операций
+     * Производится кредитное и обычное пополнение средств, снятие, вывод операций пользователя, а так же выход пользователя из системы
      *
      * @return возвращает true если функция отработала и пользователь не вышел из системы, false если пользователь вышел из системы
      */
@@ -108,7 +109,7 @@ public class InputReader {
                 }
                 break;
             case 5:
-                ArrayList<Transaction> transactions = new OperationData().displayAccountTransaction(SessionClient.session_client);
+                ArrayList<Transaction> transactions = new TransactionsDataRepository().displayAccountTransaction(SessionClient.session_client);
                 if (transactions == null) {
                     System.out.println("Операций пока нет :)\n--------------------------------------");
                 } else {

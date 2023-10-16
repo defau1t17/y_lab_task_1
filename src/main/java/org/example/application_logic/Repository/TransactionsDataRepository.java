@@ -1,7 +1,6 @@
 package org.example.application_logic.Repository;
 
 import org.example.application_entity.Client.Client;
-import org.example.application_entity.DAO.TransactionDAO;
 import org.example.application_entity.Transaction.Operation;
 import org.example.application_entity.Transaction.Transaction;
 
@@ -11,18 +10,22 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
-public class OperationData {
-
-    private static final ArrayList<TransactionDAO> transactionHistory = new ArrayList<>();
-
+public class TransactionsDataRepository {
+    /**
+     * URL для подключения к базе данных
+     */
     private static final String URL = "jdbc:postgresql://localhost:5432/y_lab_db";
-
+    /**
+     * Username для подключения к базе данных
+     */
     private static final String USER = "y_lab";
-
+    /**
+     * Password для подключения к базе данных
+     */
     private static final String PASSWORD = "y_lab";
 
     /**
-     * функция проверяет существует ли клиент в истории транзакций
+     * функция проверяет существует ли клиент в истории транзакций базы данных
      *
      * @param client авторизованный клиент
      * @return возвращает true если пользователь найден в истории, иначе вернет false
@@ -54,7 +57,7 @@ public class OperationData {
     }
 
     /**
-     * Функция предназначена для добавления новой транзакции в историю клиента, если же операций нет, то создается новый лист с операциями
+     * Функция предназначена для добавления новой транзакции в базу данных
      *
      * @param client      авторизированный клиент
      * @param transaction транзакция
@@ -97,7 +100,7 @@ public class OperationData {
      */
     public ArrayList<Transaction> displayAccountTransaction(Client client) {
         Transaction transaction = null;
-        ArrayList<Transaction> transactions = new ArrayList<>();
+        ArrayList<Transaction> transactions = null;
 
         if (doesClientExistsInHistory(client)) {
             try {
@@ -106,6 +109,7 @@ public class OperationData {
                 preparedStatement.setInt(1, Integer.parseInt(client.getId()));
 
                 ResultSet resultSet = preparedStatement.executeQuery();
+                transactions = new ArrayList<>();
                 while (resultSet.next()) {
                     transaction = new Transaction(resultSet.getString(1), Operation.valueOf(resultSet.getString(3)), resultSet.getDouble(4), resultSet.getString(5));
                     transactions.add(transaction);

@@ -26,8 +26,8 @@ public class AccountManager {
     }
 
     /**
-     * Фунция по созданию нового клиента  в листе.
-     *
+     * Фунция по созданию нового клиента в базе данных, если клиента с таким username не существует в базе, то клиент успешно сохраняется
+     * Так же устанавливается глобальныый клиент
      * @param nick     ник-нейм клиента.
      * @param username username клиента
      * @param password password клиента
@@ -35,7 +35,7 @@ public class AccountManager {
      */
     public static boolean createClient(String nick, String username, String password) {
         if (!new ClientsDataRepository().doesClientExists(username)) {
-            Client newClient = new Client(GenerateID.generateID(), nick, username, password);
+            Client newClient = new Client("", nick, username, password);
             new ClientsDataRepository().addClient(newClient);
             SessionClient.session_client = new ClientsDataRepository().findClientByUserName(username);
             return true;

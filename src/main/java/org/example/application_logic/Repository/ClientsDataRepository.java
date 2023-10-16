@@ -11,17 +11,21 @@ import java.sql.*;
 import java.util.ArrayList;
 
 public class ClientsDataRepository {
-
+    /**
+     * URL для подключения к базе данных
+     */
     private static final String URL = "jdbc:postgresql://localhost:5432/y_lab_db";
-
+    /**
+     * Username для подключения к базе данных
+     */
     private static final String USER = "y_lab";
-
+    /**
+     * Password для подключения к базе данных
+     */
     private static final String PASSWORD = "y_lab";
 
-    private static final ArrayList<Client> clients = new ArrayList<>();
-
     /**
-     * Функция добавления нового клиента в лист клиентов
+     * Функция добавления нового клиента в базу данных
      *
      * @param client новый клиент
      */
@@ -45,13 +49,11 @@ public class ClientsDataRepository {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-
-        clients.add(client);
     }
 
 
     /**
-     * Функция предназначена для проверки на существования клиента в бд
+     * Функция предназначена для проверки на существования клиента в базе данных
      *
      * @param username клиент для проверки
      * @return возвращает true если клиент существует, иначе вернет false
@@ -75,7 +77,7 @@ public class ClientsDataRepository {
     }
 
     /**
-     * Функция предназначена для поиска клиента по username
+     * Функция предназначена для поиска клиента по username в базе данных
      *
      * @param username username клиента
      * @return вернет слиента если он существует в базе, иначе вернет null
@@ -100,7 +102,7 @@ public class ClientsDataRepository {
     }
 
     /**
-     * Функция позволяет обновлять данные клиент
+     * Функция позволяет обновлять данные клиента в базе данных, а так же глобального клиента
      *
      * @param id        id клиента
      * @param quantity  денежное значение
@@ -108,7 +110,6 @@ public class ClientsDataRepository {
      */
     public static void updateClientBalanceById(String id, double quantity, Operation operation) {
         try {
-            System.out.println("came id " + id);
             Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
             connection.setAutoCommit(false);
 
@@ -145,6 +146,7 @@ public class ClientsDataRepository {
 
     /**
      * Фунекция нужна для уменьшения вложинности кода
+     * Выполняет операции с балансом пользователя исходя из типа операции
      *
      * @param client    обновляемый клиент
      * @param quantity  денежное значение

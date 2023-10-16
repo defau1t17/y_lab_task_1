@@ -3,6 +3,9 @@ package org.example.application_entity.Client;
 
 public class Client {
 
+    /**
+     * Айди пользователя
+     */
     private String id;
 
     private String nick_name;

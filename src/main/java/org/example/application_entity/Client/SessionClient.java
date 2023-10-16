@@ -2,6 +2,9 @@ package org.example.application_entity.Client;
 
 public class SessionClient {
 
+    /**
+     * Сессионный клиент, взимодействующий с проиложением
+     */
     public static Client session_client = null;
 
 

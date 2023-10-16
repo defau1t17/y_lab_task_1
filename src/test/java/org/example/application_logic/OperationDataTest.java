@@ -2,7 +2,7 @@ package org.example.application_logic;
 
 import org.example.application_entity.Client.Client;
 import org.example.application_entity.Client.SessionClient;
-import org.example.application_logic.Repository.OperationData;
+import org.example.application_logic.Repository.TransactionsDataRepository;
 import org.example.application_logic.Service.ClientServices.AccountManager;
 import org.example.application_logic.Service.GenerateID;
 import org.junit.jupiter.api.Assertions;
@@ -23,12 +23,12 @@ public class OperationDataTest {
     @Test
     void displayAccountTransactionTest() {
 
-        Assertions.assertNull(new OperationData().displayAccountTransaction(SessionClient.session_client));
+        Assertions.assertNull(new TransactionsDataRepository().displayAccountTransaction(SessionClient.session_client));
     }
 
     @Test
     void doesClientExistsInHistoryTest() {
-        Assertions.assertFalse(OperationData.doesClientExistsInHistory(SessionClient.session_client));
+        Assertions.assertFalse(TransactionsDataRepository.doesClientExistsInHistory(SessionClient.session_client));
     }
 
 

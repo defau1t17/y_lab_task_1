@@ -9,10 +9,10 @@
             <column name="id" type="SERIAL" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false" unique="true"/>
             </column>
-            <column name="nickname" type="VARCHAR(30)">
+            <column name="nickname" type="VARCHAR(30)"/>
+            <column name="username" type="VARCHAR(30)">
                 <constraints unique="true"/>
             </column>
-            <column name="username" type="VARCHAR(30)"/>
             <column name="password" type="VARCHAR(30)"/>
             <column name="balance" type="BIGINT"/>
         </createTable>

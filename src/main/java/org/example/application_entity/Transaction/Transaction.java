@@ -11,9 +11,10 @@ public class Transaction {
 
     private double magnitude;
 
-    private LocalDate localDate;
+    private String localDate;
 
-    public Transaction(String id, Operation operation, double magnitude, LocalDate localDate) {
+
+    public Transaction(String id, Operation operation, double magnitude, String localDate) {
         this.id = id;
         this.operation_type = operation;
         this.magnitude = magnitude;
@@ -28,7 +29,7 @@ public class Transaction {
         return magnitude;
     }
 
-    public LocalDate getLocalDate() {
+    public String getLocalDate() {
         return localDate;
     }
 

@@ -37,7 +37,7 @@ public class AccountManager {
         if (!new ClientsDataRepository().doesClientExists(username)) {
             Client newClient = new Client(GenerateID.generateID(), nick, username, password);
             new ClientsDataRepository().addClient(newClient);
-            SessionClient.session_client = newClient;
+            SessionClient.session_client = new ClientsDataRepository().findClientByUserName(username);
             return true;
         }
         return false;

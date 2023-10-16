@@ -82,11 +82,11 @@ public class InputReader {
             case 2:
                 System.out.println("Введите значние : ");
                 quantity = scanner.nextDouble();
-//                if (new BeginTransaction().replenishment(Operation.REPLENISHMENT, quantity)) {
-                System.out.println("Оперция выполнена успешно!\n--------------------------------------");
-//                } else {
-//                    System.out.println("Произошла ошибка во время выполнения\n--------------------------------------");
-//                }
+                if (new BeginTransaction().replenishment(Operation.REPLENISHMENT, quantity)) {
+                    System.out.println("Оперция выполнена успешно!\n--------------------------------------");
+                } else {
+                    System.out.println("Произошла ошибка во время выполнения\n--------------------------------------");
+                }
                 break;
             case 3:
                 System.out.println("Введите значние : ");

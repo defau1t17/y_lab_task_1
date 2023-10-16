@@ -21,7 +21,6 @@ public class Main {
         while (true) {
             if (SessionClient.session_client == null) {
                 while (!InputReader.beginDialog()) {
-
                 }
             } else {
                 while (!InputReader.chooseMove()) {

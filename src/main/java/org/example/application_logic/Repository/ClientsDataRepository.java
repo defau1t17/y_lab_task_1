@@ -36,8 +36,8 @@ public class ClientsDataRepository {
             statement.setString(3, client.getPassword());
             statement.setDouble(4, client.getBalance().getValue());
 
-
             statement.executeUpdate();
+
             connection.commit();
             statement.close();
             connection.close();
@@ -108,20 +108,35 @@ public class ClientsDataRepository {
      */
     public static void updateClientBalanceById(String id, double quantity, Operation operation) {
         try {
+            System.out.println("came id " + id);
             Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
-            PreparedStatement statement = connection.prepareStatement("SELECT * FROM clients.wallet WHERE id = ?");
-            statement.setString(1, id);
+            connection.setAutoCommit(false);
 
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM clients.wallet WHERE id = ?");
+            statement.setInt(1, Integer.parseInt(id));
             ResultSet resultSet = statement.executeQuery();
             Client client = null;
+
             if (resultSet.next()) {
                 client = new Client(resultSet.getString(1), resultSet.getString(2), resultSet.getString(3), resultSet.getString(4));
                 client.getBalance().setValue(resultSet.getDouble(5));
                 client.getBalance().setValue(operation(client, quantity, operation).getBalance().getValue());
-                System.out.println(client.getBalance().getValue());
 
+                PreparedStatement updateStatement = connection.prepareStatement("UPDATE clients.wallet SET balance = ? WHERE id = ?");
+                updateStatement.setDouble(1, client.getBalance().getValue());
+                updateStatement.setInt(2, Integer.parseInt(id));
+                updateStatement.executeUpdate();
+
+                updateStatement.close();
+
+                SessionClient.UpdateSessionClient(client);
             }
 
+            statement.close();
+
+            connection.commit();
+
+            connection.close();
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -142,8 +157,6 @@ public class ClientsDataRepository {
             case CREDIT -> client.getBalance().setValue(client.getBalance().getValue() + quantity);
             case WITHDRAWAL -> client.getBalance().setValue(client.getBalance().getValue() - quantity);
         }
-
-        SessionClient.UpdateSessionClient(client);
         return client;
     }
 

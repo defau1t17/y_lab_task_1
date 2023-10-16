@@ -4,18 +4,17 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.10.xsd">
 
-    <changeSet id="create-transaction-table" author="default">
+    <changeSet id="create-transactions-table" author="default">
         <createTable schemaName="transactions" tableName="transaction">
-            <column name="id" type="SERIAL" autoIncrement="true">
-                <constraints primaryKey="true" nullable="false" unique="true"/>
+            <column name="id" type="SERIAL">
+                <constraints primaryKey="true" unique="true"/>
             </column>
-            <column name="client_id" type="INT">
-                <constraints references="clients(id)"/>
-            </column>
+            <column name="client_id" type="INT"/>
             <column name="operation_type" type="VARCHAR(30)"/>
             <column name="magnitude" type="NUMERIC"/>
-            <column name="localDate" type="DATE"/>
+            <column name="transdate" type="VARCHAR(30)"/>
         </createTable>
     </changeSet>
+
 
 </databaseChangeLog>

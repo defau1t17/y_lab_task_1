@@ -22,7 +22,7 @@ public class BeginTransaction implements TransactionsType {
      */
     @Override
     public boolean replenishment(Operation operation, double quantity) {
-        Transaction transaction = new Transaction(GenerateID.generateID(), operation, quantity, LocalDate.now());
+        Transaction transaction = new Transaction(GenerateID.generateID(), operation, quantity, LocalDate.now().toString());
         if (new OperationData().addNewOperationForClient(SessionClient.session_client, transaction)) {
             ClientsDataRepository.updateClientBalanceById(SessionClient.session_client.getId(), quantity, operation);
             return true;
@@ -39,7 +39,7 @@ public class BeginTransaction implements TransactionsType {
      */
     @Override
     public boolean withdrawal(Operation operation, double quantity) {
-        Transaction transaction = new Transaction(GenerateID.generateID(), operation, quantity, LocalDate.now());
+        Transaction transaction = new Transaction(GenerateID.generateID(), operation, quantity, LocalDate.now().toString());
         if (CheckForIssues.enoughMoney(quantity)) {
             if (new OperationData().addNewOperationForClient(SessionClient.session_client, transaction)) {
                 ClientsDataRepository.updateClientBalanceById(SessionClient.session_client.getId(), quantity, operation);
@@ -57,7 +57,7 @@ public class BeginTransaction implements TransactionsType {
      */
     @Override
     public boolean creditAdd(Operation operation, double quantity) {
-        Transaction transaction = new Transaction(GenerateID.generateID(), operation, quantity, LocalDate.now());
+        Transaction transaction = new Transaction(GenerateID.generateID(), operation, quantity, LocalDate.now().toString());
         if (new OperationData().addNewOperationForClient(SessionClient.session_client, transaction)) {
             ClientsDataRepository.updateClientBalanceById(SessionClient.session_client.getId(), quantity, operation);
             return true;

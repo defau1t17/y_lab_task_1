@@ -5,9 +5,9 @@ import liquibase.database.Database;
 import liquibase.database.DatabaseFactory;
 import liquibase.database.jvm.JdbcConnection;
 import liquibase.resource.ClassLoaderResourceAccessor;
+import org.example.application_logic.Connector.DBConnectorConfig;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 
 
 public class LiquibaseService {
@@ -19,7 +19,7 @@ public class LiquibaseService {
     public void createSchemasAndTables() {
 
         try {
-            Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/y_lab_db", "y_lab", "y_lab");
+            Connection connection = DBConnectorConfig.getConnection();
             Database database = DatabaseFactory.getInstance().findCorrectDatabaseImplementation(new JdbcConnection(connection));
             Liquibase liquibase = new Liquibase("db/changelog/changelog.xml", new ClassLoaderResourceAccessor(), database);
             liquibase.update();

@@ -3,26 +3,14 @@ package org.example.application_logic.Repository;
 import org.example.application_entity.Client.Client;
 import org.example.application_entity.Transaction.Operation;
 import org.example.application_entity.Transaction.Transaction;
+import org.example.application_logic.Connector.DBConnectorConfig;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
 public class TransactionsDataRepository {
-    /**
-     * URL для подключения к базе данных
-     */
-    private static final String URL = "jdbc:postgresql://localhost:5432/y_lab_db";
-    /**
-     * Username для подключения к базе данных
-     */
-    private static final String USER = "y_lab";
-    /**
-     * Password для подключения к базе данных
-     */
-    private static final String PASSWORD = "y_lab";
 
     /**
      * функция проверяет существует ли клиент в истории транзакций базы данных
@@ -32,7 +20,8 @@ public class TransactionsDataRepository {
      */
     public static boolean doesClientExistsInHistory(Client client) {
         try {
-            Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
+            Connection connection = DBConnectorConfig.getConnection();
+
             PreparedStatement statement = connection.prepareStatement("SELECT * FROM transactions.transaction  WHERE client_id = ?");
             statement.setInt(1, Integer.parseInt(client.getId()));
             ResultSet resultSet = statement.executeQuery();
@@ -67,7 +56,8 @@ public class TransactionsDataRepository {
 
         try {
 
-            Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
+            Connection connection = DBConnectorConfig.getConnection();
+
             connection.setAutoCommit(false);
             PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO transactions.transaction (client_id, operation_type, magnitude, transdate) VALUES (?,?,?,?)");
             preparedStatement.setInt(1, Integer.parseInt(client.getId()));
@@ -104,7 +94,7 @@ public class TransactionsDataRepository {
 
         if (doesClientExistsInHistory(client)) {
             try {
-                Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
+                Connection connection = DBConnectorConfig.getConnection();
                 PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM transactions.transaction WHERE client_id = ?");
                 preparedStatement.setInt(1, Integer.parseInt(client.getId()));
 

@@ -1,28 +1,13 @@
 package org.example.application_logic.Repository;
 
-import liquibase.database.Database;
-import liquibase.database.DatabaseFactory;
-import liquibase.database.jvm.JdbcConnection;
 import org.example.application_entity.Client.Client;
 import org.example.application_entity.Transaction.Operation;
 import org.example.application_entity.Client.SessionClient;
+import org.example.application_logic.Connector.DBConnectorConfig;
 
 import java.sql.*;
-import java.util.ArrayList;
 
 public class ClientsDataRepository {
-    /**
-     * URL для подключения к базе данных
-     */
-    private static final String URL = "jdbc:postgresql://localhost:5432/y_lab_db";
-    /**
-     * Username для подключения к базе данных
-     */
-    private static final String USER = "y_lab";
-    /**
-     * Password для подключения к базе данных
-     */
-    private static final String PASSWORD = "y_lab";
 
     /**
      * Функция добавления нового клиента в базу данных
@@ -31,7 +16,8 @@ public class ClientsDataRepository {
      */
     public void addClient(Client client) {
         try {
-            Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
+            Connection connection = DBConnectorConfig.getConnection();
+
             connection.setAutoCommit(false);
 
             PreparedStatement statement = connection.prepareStatement("INSERT INTO clients.wallet (nickname, username, password,balance) VALUES (?, ?, ?,?)");
@@ -61,7 +47,8 @@ public class ClientsDataRepository {
     public boolean doesClientExists(String username) {
 
         try {
-            Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
+            Connection connection = DBConnectorConfig.getConnection();
+
             PreparedStatement statement = connection.prepareStatement("SELECT * FROM clients.wallet WHERE username = ?");
             statement.setString(1, username);
             ResultSet resultSet = statement.executeQuery();
@@ -84,7 +71,8 @@ public class ClientsDataRepository {
      */
     public Client findClientByUserName(String username) {
         try {
-            Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
+            Connection connection = DBConnectorConfig.getConnection();
+
             PreparedStatement statement = connection.prepareStatement("SELECT * FROM clients.wallet WHERE username = ?");
             statement.setString(1, username);
             ResultSet resultSet = statement.executeQuery();
@@ -110,7 +98,8 @@ public class ClientsDataRepository {
      */
     public static void updateClientBalanceById(String id, double quantity, Operation operation) {
         try {
-            Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
+            Connection connection = DBConnectorConfig.getConnection();
+
             connection.setAutoCommit(false);
 
             PreparedStatement statement = connection.prepareStatement("SELECT * FROM clients.wallet WHERE id = ?");

@@ -3,7 +3,6 @@ package org.example.application_logic.Service.ClientServices;
 import org.example.application_logic.Handler.CheckForIssues;
 import org.example.application_logic.Repository.ClientsDataRepository;
 import org.example.application_logic.Repository.TransactionsDataRepository;
-import org.example.application_logic.Service.GenerateID;
 import org.example.application_entity.Transaction.Operation;
 import org.example.application_entity.Client.SessionClient;
 import org.example.application_entity.Transaction.Transaction;

@@ -17,7 +17,6 @@ public class LiquibaseService {
      */
 
     public void createSchemasAndTables() {
-
         try {
             Connection connection = DBConnectorConfig.getConnection();
             Database database = DatabaseFactory.getInstance().findCorrectDatabaseImplementation(new JdbcConnection(connection));

@@ -14,22 +14,25 @@ public class ClientsDataRepository {
      *
      * @param client новый клиент
      */
+
+    Connection connection = DBConnectorConfig.getConnection();
+    PreparedStatement statement = null;
+
     public void addClient(Client client) {
         try {
-            Connection connection = DBConnectorConfig.getConnection();
+            connection = DBConnectorConfig.getConnection();
 
             connection.setAutoCommit(false);
 
-            PreparedStatement statement = connection.prepareStatement("INSERT INTO clients.wallet (nickname, username, password,balance) VALUES (?, ?, ?,?)");
+            statement = connection.prepareStatement("INSERT INTO clients.wallet (nickname, username, password,balance) VALUES (?, ?, ?,?)");
             statement.setString(1, client.getNick_name());
             statement.setString(2, client.getUsername());
             statement.setString(3, client.getPassword());
             statement.setDouble(4, client.getBalance().getValue());
 
             statement.executeUpdate();
-
-            connection.commit();
             statement.close();
+            connection.commit();
             connection.close();
 
         } catch (Exception e) {
@@ -47,14 +50,18 @@ public class ClientsDataRepository {
     public boolean doesClientExists(String username) {
 
         try {
-            Connection connection = DBConnectorConfig.getConnection();
+            connection = DBConnectorConfig.getConnection();
 
-            PreparedStatement statement = connection.prepareStatement("SELECT * FROM clients.wallet WHERE username = ?");
+            statement = connection.prepareStatement("SELECT * FROM clients.wallet WHERE username = ?");
             statement.setString(1, username);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
+                statement.close();
+                connection.close();
                 return true;
             } else {
+                statement.close();
+                connection.close();
                 return false;
             }
         } catch (Exception e) {
@@ -71,9 +78,9 @@ public class ClientsDataRepository {
      */
     public Client findClientByUserName(String username) {
         try {
-            Connection connection = DBConnectorConfig.getConnection();
+            connection = DBConnectorConfig.getConnection();
 
-            PreparedStatement statement = connection.prepareStatement("SELECT * FROM clients.wallet WHERE username = ?");
+            statement = connection.prepareStatement("SELECT * FROM clients.wallet WHERE username = ?");
             statement.setString(1, username);
             ResultSet resultSet = statement.executeQuery();
             Client client = null;
@@ -82,6 +89,8 @@ public class ClientsDataRepository {
                 client.getBalance().setValue(resultSet.getDouble(5));
                 return client;
             }
+            statement.close();
+            connection.close();
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -115,8 +124,8 @@ public class ClientsDataRepository {
                 PreparedStatement updateStatement = connection.prepareStatement("UPDATE clients.wallet SET balance = ? WHERE id = ?");
                 updateStatement.setDouble(1, client.getBalance().getValue());
                 updateStatement.setInt(2, Integer.parseInt(id));
-                updateStatement.executeUpdate();
 
+                updateStatement.executeUpdate();
                 updateStatement.close();
 
                 SessionClient.UpdateSessionClient(client);

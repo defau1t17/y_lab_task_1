@@ -17,7 +17,7 @@ public class InputReaderTest {
     @Test
     void beginDialog() {
         ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream("1/".getBytes());
-        InputStream inputStream = System.in;  // сохраняем ссылку на ввод с клавиатуры
+        InputStream inputStream = System.in;
         System.setIn(byteArrayInputStream);
         Assertions.assertThrows(InputMismatchException.class, InputReader::beginDialog);
         System.setIn(inputStream);

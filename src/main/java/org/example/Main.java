@@ -12,10 +12,12 @@ public class Main {
     /**
      * Функция предназначена для общения клиента с приложением. Клиент вводит значения в консоль, вызывая разные действия приложения
      * Так же при запуске приложения создаются схемы и таблицы для бд, если до этого они не были созданы
+     *
      * @param args
      */
     public static void main(String[] args) throws IOException {
 
+        new LiquibaseService().createMigrationSchema();
         new LiquibaseService().createSchemasAndTables();
 
         while (true) {

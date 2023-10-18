@@ -5,12 +5,8 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
          https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.5.xsd"
         logicalFilePath="db/changelog.xml">
-
-
     <include file="create-client-schema.xml" relativeToChangelogFile="true"/>
     <include file="create-transactions-schema.xml" relativeToChangelogFile="true"/>
-    <include file="create-migration-schema.xml" relativeToChangelogFile="true"/>
-
 
     <include file="create-client-table.xml" relativeToChangelogFile="true"/>
     <include file="create-transaction-table.xml" relativeToChangelogFile="true"/>

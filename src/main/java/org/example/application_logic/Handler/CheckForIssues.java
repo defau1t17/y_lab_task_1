@@ -9,7 +9,7 @@ public class CheckForIssues {
      * Функция проверяет достоточно ли у клиента денег на балансе, чтобы произвести дебет средств
      *
      * @param value дебетовоое значение
-     * @return да если, у клиента достаточно средств на балансе иначе вернет нет
+     * @return вернет да если у клиента достаточно средств на балансе, иначе вернет нет
      */
     public static boolean enoughMoney(double value) {
         if ((SessionClient.session_client.getBalance().getValue() - value) >= 0) {

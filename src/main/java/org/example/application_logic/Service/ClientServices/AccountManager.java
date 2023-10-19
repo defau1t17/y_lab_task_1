@@ -1,9 +1,9 @@
 package org.example.application_logic.Service.ClientServices;
 
+import org.example.application_logic.Repository.ClientsDataRepository;
 import org.example.application_logic.Service.GenerateID;
 import org.example.application_entity.Client.Client;
 import org.example.application_entity.Client.SessionClient;
-import org.example.application_logic.Repository.ClientsData;
 
 public class AccountManager {
 
@@ -15,9 +15,9 @@ public class AccountManager {
      * @return true если клиент найден и процесс авторизации произошел успешно, иначе вернется false
      */
     public static boolean login(String username, String password) {
-        if (new ClientsData().doesClientExists(username)) {
-            if (new ClientsData().findClientByUserName(username).getPassword().equals(password)) {
-                SessionClient.session_client = new ClientsData().findClientByUserName(username);
+        if (new ClientsDataRepository().doesClientExists(username)) {
+            if (new ClientsDataRepository().findClientByUserName(username).getPassword().equals(password)) {
+                SessionClient.session_client = new ClientsDataRepository().findClientByUserName(username);
                 return true;
             } else return false;
 
@@ -26,18 +26,18 @@ public class AccountManager {
     }
 
     /**
-     * Фунция по созданию нового клиента  в листе.
-     *
+     * Фунция по созданию нового клиента в базе данных, если клиента с таким username не существует в базе, то клиент успешно сохраняется
+     * Так же устанавливается глобальныый клиент
      * @param nick     ник-нейм клиента.
      * @param username username клиента
      * @param password password клиента
      * @return вернется true если клиент не обнаружен в листе и успешно создан, иначе вернется ошибка
      */
     public static boolean createClient(String nick, String username, String password) {
-        if (!new ClientsData().doesClientExists(username)) {
-            Client newClient = new Client(GenerateID.generateID(), nick, username, password);
-            new ClientsData().addClient(newClient);
-            SessionClient.session_client = newClient;
+        if (!new ClientsDataRepository().doesClientExists(username)) {
+            Client newClient = new Client("", nick, username, password);
+            new ClientsDataRepository().addClient(newClient);
+            SessionClient.session_client = new ClientsDataRepository().findClientByUserName(username);
             return true;
         }
         return false;
